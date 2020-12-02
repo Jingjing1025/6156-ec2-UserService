@@ -135,7 +135,7 @@ def tbls(dbname):
     :return: List of tables in the database.
     """
 
-    inputs = log_and_extract_input(dbs, None)
+    inputs = log_and_extract_input(tbls, None)
     res = dta.get_tables(dbname)
     # print(res)
 
@@ -370,10 +370,6 @@ def _register(user_info):
 def registration():
     inputs = log_and_extract_input(registration)
 
-    rsp_data = None
-    rsp_status = None
-    rsp_txt = None
-
     try:
         if inputs['method'] == 'POST':
             rsp, token = _register(inputs['body'])
@@ -383,11 +379,9 @@ def registration():
                 link = rsp
                 auth = token
             else:
-                rsp_data = None
                 rsp_status = 404
                 rsp_txt = 'NOT FOUND'
         else:
-            rsp_data = None
             rsp_txt = 'NOT IMPLEMENTED'
             rsp_status = 501
 
